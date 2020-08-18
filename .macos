@@ -1,0 +1,183 @@
+#!/usr/bin/env bash
+
+# ~/.macos — https://mths.be/macos
+# Modified by Richard Waller
+# Run without downloading:
+# curl https://raw.githubusercontent.com/rwalle61/dotfiles/master/.macos | bash
+
+# Close any open System Preferences panes, to prevent them from overriding
+# settings we’re about to change
+osascript -e 'tell application "System Preferences" to quit'
+
+# Ask for the administrator password upfront
+sudo -v
+
+# Keep-alive: update existing `sudo` time stamp until `.macos` has finished
+while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+
+echo "installing homebrew"
+# install homebrew https://brew.sh
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+
+echo "brew installing stuff"
+
+echo "brew installing stuff"
+# hub: a github-specific version of git
+# tree: really handy for listing out directories in text
+# bat: A cat(1) clone with syntax highlighting and Git integration.
+brew install git hub tree bat
+
+echo "installing node (via n-install)"
+curl -L https://git.io/n-install | bash
+
+echo "node --version: $(node --version)"
+echo "npm --version: $(npm --version)"
+
+echo "installing apps with brew cask"
+brew cask install google-chrome firefox \
+google-backup-and-sync visual-studio-code \
+slack skype zoomus \
+qlcolorcode qlstephen qlmarkdown quicklook-json qlimagesize suspicious-package quicklookase qlvideo \
+
+# echo "Generating an RSA token for GitHub"
+# mkdir -p ~/.ssh
+# touch ~/.ssh/config
+# ssh-keygen -t rsa -b 4096 -C "me+github@kentcdodds.com"
+# echo "Host *\n AddKeysToAgent yes\n UseKeychain yes\n IdentityFile ~/.ssh/id_rsa" | tee ~/.ssh/config
+# eval "$(ssh-agent -s)"
+# echo "run 'pbcopy < ~/.ssh/id_rsa.pub' and paste that into GitHub"
+
+echo "cloning dotfiles"
+git clone git@github.com:rwalle61/dotfiles.git "${HOME}/dotfiles"
+# ln -s "${HOME}/dotfiles/.zshrc" "${HOME}/.zshrc"
+ln -s "${HOME}/dotfiles/.config/bat/config" "${HOME}/.config/bat/config"
+bat cache --build
+
+echo "making system modifications:"
+
+###############################################################################
+# Finder                                                                      #
+###############################################################################
+
+# Finder: allow quitting via ⌘ + Q; doing so will also hide desktop icons
+defaults write com.apple.finder QuitMenuItem -bool true
+
+# Disable the warning when changing a file extension
+defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
+
+# Enable spring loading for directories
+defaults write NSGlobalDomain com.apple.springing.enabled -bool true
+
+# Reduce the spring loading delay for directories
+defaults write NSGlobalDomain com.apple.springing.delay -float 0.2
+
+# Disable disk image verification
+defaults write com.apple.frameworks.diskimages skip-verify -bool true
+defaults write com.apple.frameworks.diskimages skip-verify-locked -bool true
+defaults write com.apple.frameworks.diskimages skip-verify-remote -bool true
+
+# Automatically open a new Finder window when a volume is mounted
+defaults write com.apple.frameworks.diskimages auto-open-ro-root -bool true
+defaults write com.apple.frameworks.diskimages auto-open-rw-root -bool true
+defaults write com.apple.finder OpenWindowForNewRemovableDisk -bool true
+
+
+###############################################################################
+# Dock, Dashboard, and hot corners                                            #
+###############################################################################
+
+# Automatically hide and show the Dock
+defaults write com.apple.dock autohide -bool true
+
+###############################################################################
+# Safari & WebKit                                                             #
+###############################################################################
+
+# Set Safari’s home page to `about:blank` for faster loading
+defaults write com.apple.Safari HomePage -string "about:blank"
+
+# Enable “Do Not Track”
+defaults write com.apple.Safari SendDoNotTrackHTTPHeader -bool true
+
+# Update extensions automatically
+defaults write com.apple.Safari InstallExtensionUpdatesAutomatically -bool true
+
+###############################################################################
+# Activity Monitor                                                            #
+###############################################################################
+
+# Show the main window when launching Activity Monitor
+defaults write com.apple.ActivityMonitor OpenMainWindow -bool true
+
+# Visualize CPU usage in the Activity Monitor Dock icon
+# defaults write com.apple.ActivityMonitor IconType -int 5
+
+# Show all processes in Activity Monitor
+defaults write com.apple.ActivityMonitor ShowCategory -int 0
+
+# Sort Activity Monitor results by CPU usage
+defaults write com.apple.ActivityMonitor SortColumn -string "CPUUsage"
+defaults write com.apple.ActivityMonitor SortDirection -int 0
+
+###############################################################################
+# Mac App Store                                                               #
+###############################################################################
+
+# Enable the WebKit Developer Tools in the Mac App Store
+defaults write com.apple.appstore WebKitDeveloperExtras -bool true
+
+# Enable Debug Menu in the Mac App Store
+# defaults write com.apple.appstore ShowDebugMenu -bool true
+
+# Enable the automatic update check
+defaults write com.apple.SoftwareUpdate AutomaticCheckEnabled -bool true
+
+# Check for software updates daily, not just once per week
+defaults write com.apple.SoftwareUpdate ScheduleFrequency -int 1
+
+# Download newly available updates in background
+defaults write com.apple.SoftwareUpdate AutomaticDownload -int 1
+
+# Install System data files & security updates
+defaults write com.apple.SoftwareUpdate CriticalUpdateInstall -int 1
+
+# Automatically download apps purchased on other Macs
+defaults write com.apple.SoftwareUpdate ConfigDataInstall -int 1
+
+# Turn on app auto-update
+defaults write com.apple.commerce AutoUpdate -bool true
+
+# Disallow the App Store to reboot machine on macOS updates
+defaults write com.apple.commerce AutoUpdateRestartRequired -bool false
+
+
+###############################################################################
+# Kill affected applications                                                  #
+###############################################################################
+
+for app in "Activity Monitor" \
+  "Address Book" \
+  "Calendar" \
+  "cfprefsd" \
+  "Contacts" \
+  "Dock" \
+  "Finder" \
+  "Mail" \
+  "Messages" \
+  "Photos" \
+  "Safari" \
+  "SystemUIServer" \
+  "iCal"; do
+  killall "${app}" &> /dev/null
+done
+echo "Done. Note that some of these changes require a logout/restart to take effect."
+
+printf "TODO:\n\
+install: \n\
+  Firefox Developer Tools
+\n\
+Restart Terminal.app\n\
+copy git config from your backup/re-login \n\
+copy .npmrc from your backup/re-login \n\
+login to literally everything \n\
+"
