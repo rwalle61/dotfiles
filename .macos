@@ -173,8 +173,11 @@ done
 echo "Done. Note that some of these changes require a logout/restart to take effect."
 
 printf "TODO:\n\
-install: \n\
-  Firefox Developer Tools
+install/sort: \n\
+  git config \n\
+  zsh \n\
+  Firefox Developer Tools \n\
+  Spectacle \n\
 \n\
 Restart Terminal.app\n\
 copy git config from your backup/re-login \n\
