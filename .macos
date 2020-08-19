@@ -20,8 +20,6 @@ echo "installing homebrew"
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
 echo "brew installing stuff"
-
-echo "brew installing stuff"
 # hub: a github-specific version of git
 # tree: really handy for listing out directories in text
 # bat: A cat(1) clone with syntax highlighting and Git integration.
@@ -35,8 +33,10 @@ echo "npm --version: $(npm --version)"
 
 echo "installing apps with brew cask"
 brew cask install google-chrome firefox \
-google-backup-and-sync visual-studio-code \
+google-backup-and-sync now-tv-player \
+visual-studio-code iterm2 \
 slack skype zoomus \
+spectacle \
 qlcolorcode qlstephen qlmarkdown quicklook-json qlimagesize suspicious-package quicklookase qlvideo \
 
 # echo "Generating an RSA token for GitHub"
@@ -177,7 +177,7 @@ install/sort: \n\
   git config \n\
   zsh \n\
   Firefox Developer Tools \n\
-  Spectacle \n\
+  Spectacle hotkeys \n\
 \n\
 Restart Terminal.app\n\
 copy git config from your backup/re-login \n\
