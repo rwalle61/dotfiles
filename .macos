@@ -25,7 +25,7 @@ echo "brew installing stuff"
 # hub: a github-specific version of git
 # tree: really handy for listing out directories in text
 # bat: A cat(1) clone with syntax highlighting and Git integration.
-brew install git hub tree bat
+brew install git hub tree bat shellcheck
 
 echo "installing node (via n-install)"
 curl -L https://git.io/n-install | bash
