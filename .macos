@@ -25,7 +25,7 @@ echo "brew installing stuff"
 # hub: a github-specific version of git
 # tree: really handy for listing out directories in text
 # bat: A cat(1) clone with syntax highlighting and Git integration.
-brew install git hub tree bat yarn shellcheck watch ag
+brew install git hub tree bat yarn shellcheck watch the_silver_searcher
 
 # install oh-my-zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
