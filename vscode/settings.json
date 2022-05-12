@@ -1,5 +1,4 @@
 {
-  "window.zoomLevel": 2,
   "explorer.confirmDragAndDrop": false,
   "editor.suggest.localityBonus": true,
   "terminal.integrated.scrollback": 8000,
@@ -22,7 +21,6 @@
   "python.formatting.provider": "autopep8",
   "editor.suggestSelection": "first",
   "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
-  "terminal.integrated.rendererType": "dom",
   "files.associations": {
     "*Dockerfile*": "dockerfile"
   },
@@ -32,16 +30,11 @@
   "workbench.panel.defaultLocation": "right",
   "git.ignoreLegacyWarning": true,
   "vsicons.dontShowNewVersionMessage": true,
-  "go.formatTool": "goimports",
-  "workbench.editor.enablePreviewFromQuickOpen": false,
-  "git.enableCommitSigning": true,
-  "java.errors.incompleteClasspath.severity": "ignore",
   "diffEditor.ignoreTrimWhitespace": false,
-  "java.autobuild.enabled": false,
   "typescript.format.insertSpaceAfterOpeningAndBeforeClosingTemplateStringBraces": true,
   "typescript.updateImportsOnFileMove.enabled": "always",
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true
+    // "source.fixAll.eslint": true
   },
   "files.insertFinalNewline": true,
   "shellcheck.disableVersionCheck": true,
@@ -51,12 +44,12 @@
     "editor.defaultFormatter": "dbaeumer.vscode-eslint"
   },
   "[javascript]": {
-    "editor.defaultFormatter": "vscode.typescript-language-features"
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "eslint.format.enable": true,
   "go.useLanguageServer": true,
   "java.semanticHighlighting.enabled": true,
-  "terminal.integrated.fontFamily": "Meslo LG M for Powerline",
+  // "terminal.integrated.fontFamily": "Meslo LG M for Powerline",
   "editor.tabSize": 2,
   "code-runner.showRunIconInEditorTitleMenu": false,
   "gitHistory.showEditorTitleMenuBarIcons": false,
@@ -66,10 +59,77 @@
   "prettier.trailingComma": "all",
   "editor.renameOnType": true,
   "todohighlight.keywordsPattern": "\\sTODO:",
-  "python.languageServer": "Microsoft",
   "javascript.preferences.importModuleSpecifierEnding": "minimal",
   "editor.trimAutoWhitespace": false,
-  "editor.renderWhitespace": "boundary",
+  "editor.renderWhitespace": "trailing",
+  "typescript.preferences.importModuleSpecifierEnding": "minimal",
+  "git.confirmSync": false,
+  "workbench.iconTheme": "vscode-icons",
+  "terminal.integrated.shell.osx": "/bin/zsh",
+  "java.project.importOnFirstTimeStartup": "automatic",
+  "python.showStartPage": false,
+  "search.exclude": {
+    "**/.git": true,
+    "**/*.heapsnapshot": true
+  },
+  "errorLens.enabledDiagnosticLevels": ["error", "info", "warning"],
+  "mocha-snippets.function-type": "arrow",
+  "tabnine.experimentalAutoImports": true,
+  "yaml.customTags": [
+    "!And",
+    "!And sequence",
+    "!If",
+    "!If sequence",
+    "!Not",
+    "!Not sequence",
+    "!Equals",
+    "!Equals sequence",
+    "!Or",
+    "!Or sequence",
+    "!FindInMap",
+    "!FindInMap sequence",
+    "!Base64",
+    "!Join",
+    "!Join sequence",
+    "!Cidr",
+    "!Ref",
+    "!Sub",
+    "!Sub sequence",
+    "!GetAtt",
+    "!GetAZs",
+    "!ImportValue",
+    "!ImportValue sequence",
+    "!Select",
+    "!Select sequence",
+    "!Split",
+    "!Split sequence"
+  ],
+  "yaml.validate": false,
+  "workbench.editor.decorations.badges": true,
+  "workbench.editor.decorations.colors": true,
+  "editor.rulers": [],
+  "redhat.telemetry.enabled": false,
+  "security.workspace.trust.untrustedFiles": "open",
+  "workbench.editorAssociations": {
+    "*.ipynb": "jupyter.notebook.ipynb"
+  },
+  "js/ts.implicitProjectConfig.strictNullChecks": true,
+  "javascript.inlayHints.enumMemberValues.enabled": true,
+  "typescript.inlayHints.enumMemberValues.enabled": true,
+  "javascript.inlayHints.functionLikeReturnTypes.enabled": true,
+  "typescript.preferences.importModuleSpecifier": "project-relative",
+  "json.schemas": [],
+  "workbench.editor.enablePreview": false,
+  "errorLens.enabled": true,
+  "terminal.integrated.env.osx": {
+    "FIG_NEW_SESSION": "1"
+  },
+  "editor.accessibilitySupport": "off",
+  "githubPullRequests.terminalLinksHandler": "github",
   "editor.formatOnSave": true,
-  "typescript.preferences.importModuleSpecifierEnding": "minimal"
+  "editor.inlineSuggest.enabled": true,
+  "editor.bracketPairColorization.enabled": true,
+  "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
+  "js/ts.implicitProjectConfig.checkJs": true,
+  "window.zoomLevel": 1
 }

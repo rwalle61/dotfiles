@@ -6,7 +6,7 @@
 # curl https://raw.githubusercontent.com/rwalle61/dotfiles/master/.macos | bash
 
 # Close any open System Preferences panes, to prevent them from overriding
-# settings we’re about to change
+# settings we're about to change
 osascript -e 'tell application "System Preferences" to quit'
 
 # Ask for the administrator password upfront
@@ -37,11 +37,12 @@ echo "node --version: $(node --version)"
 echo "npm --version: $(npm --version)"
 
 echo "installing apps with brew cask"
-brew cask install google-chrome firefox \
-google-backup-and-sync now-tv-player \
+brew tap homebrew/cask-versions
+brew cask install google-chrome google-chrome-dev firefox firefox-developer-edition \
+google-drive now-tv-player \
 visual-studio-code iterm2 \
-slack skype zoomus \
-spectacle \
+slack zoomus \
+fig spectacle copyclip \
 qlcolorcode qlstephen qlmarkdown quicklook-json qlimagesize suspicious-package quicklookase qlvideo \
 
 # echo "Generating an RSA token for GitHub"
