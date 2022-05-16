@@ -271,4 +271,5 @@ Log in to VSCode to use settings sync \n\
 copy git config from your backup or re-login \n\
 copy .npmrc from your backup or re-login \n\
 login to everything \n\
+Set iTerm settings (https://stackoverflow.com/a/63403514, Appearance > Tabs > Preserve windows size when tab bar shows or hides, Appearance > Dimming > 30) \n\
 "
