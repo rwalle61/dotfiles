@@ -21,11 +21,14 @@ echo "installing homebrew"
 # may need to use:
 # sudo chown -R $(whoami):admin /usr/local/* && sudo chmod -R g+rwx /usr/local/*
 
+# Running these two commands in your terminal to add Homebrew to your PATH:
+echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> $HOME/.zprofile
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
 echo "brew installing stuff"
-# hub: a github-specific version of git
-# tree: really handy for listing out directories in text
+# tree: handy for listing out directories in text
 # bat: A cat(1) clone with syntax highlighting and Git integration.
-brew install git hub tree bat yarn shellcheck watch the_silver_searcher
+brew install git tree bat shellcheck watch the_silver_searcher
 
 # install oh-my-zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
@@ -33,15 +36,20 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 echo "installing node (via n-install)"
 curl -L https://git.io/n-install | bash
 
+# run this to enable n and Node.js
+. ~/.zshrc
+
 echo "node --version: $(node --version)"
 echo "npm --version: $(npm --version)"
 
-echo "installing apps with brew cask"
+npm install --global yarn
+
+echo "installing apps with brew"
 brew tap homebrew/cask-versions
-brew cask install google-chrome google-chrome-dev firefox firefox-developer-edition \
-google-drive now-tv-player \
-visual-studio-code iterm2 \
-slack zoomus \
+brew install --cask google-chrome google-chrome-dev firefox firefox-developer-edition \
+google-drive now-tv-player discord steam \
+visual-studio-code iterm2 docker postman \
+slack zoom \
 fig spectacle copyclip \
 qlcolorcode qlstephen qlmarkdown quicklook-json qlimagesize suspicious-package quicklookase qlvideo \
 
@@ -68,6 +76,9 @@ echo "making system modifications:"
 # Finder: allow quitting via ⌘ + Q; doing so will also hide desktop icons
 defaults write com.apple.finder QuitMenuItem -bool true
 
+# Finder > Preferences > Show all filename extensions
+defaults write NSGlobalDomain AppleShowAllExtensions -bool true
+
 # Disable the warning when changing a file extension
 defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
 
@@ -87,6 +98,36 @@ defaults write com.apple.frameworks.diskimages auto-open-ro-root -bool true
 defaults write com.apple.frameworks.diskimages auto-open-rw-root -bool true
 defaults write com.apple.finder OpenWindowForNewRemovableDisk -bool true
 
+# Use column view in all Finder windows by default
+# Four-letter codes for the other view modes: Icon (icnv), Lists (nlsv), Column (clmv), Gallery (glyv)
+defaults write com.apple.finder FXPreferredViewStyle -string "clmv"
+
+# Disable the "Are you sure you want to open this application?" dialog
+defaults write com.apple.LaunchServices LSQuarantine -bool false
+
+# Disable Notification Center and remove the menu bar icon
+launchctl unload -w /System/Library/LaunchAgents/com.apple.notificationcenterui.plist 2> /dev/null
+
+# Disable automatic capitalization as it's annoying when typing code
+defaults write NSGlobalDomain NSAutomaticCapitalizationEnabled -bool false
+
+# Disable smart dashes as they're annoying when typing code
+defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
+
+# Disable automatic period substitution as it's annoying when typing code
+defaults write NSGlobalDomain NSAutomaticPeriodSubstitutionEnabled -bool false
+
+# Disable smart quotes as they're annoying when typing code
+defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
+
+# Disable auto-correct
+defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
+
+# Trackpad: enable tap to click for this user and for the login screen
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
+defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
+defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
+sudo defaults write com.apple.AppleMultitouchTrackpad Clicking 1
 
 ###############################################################################
 # Dock, Dashboard, and hot corners                                            #
@@ -94,6 +135,9 @@ defaults write com.apple.finder OpenWindowForNewRemovableDisk -bool true
 
 # Automatically hide and show the Dock
 defaults write com.apple.dock autohide -bool true
+
+# Clear Dock
+defaults write com.apple.dock persistent-apps -array
 
 ###############################################################################
 # Safari & WebKit                                                             #
@@ -116,7 +160,7 @@ defaults write com.apple.Safari InstallExtensionUpdatesAutomatically -bool true
 defaults write com.apple.ActivityMonitor OpenMainWindow -bool true
 
 # Visualize CPU usage in the Activity Monitor Dock icon
-# defaults write com.apple.ActivityMonitor IconType -int 5
+defaults write com.apple.ActivityMonitor IconType -int 5
 
 # Show all processes in Activity Monitor
 defaults write com.apple.ActivityMonitor ShowCategory -int 0
@@ -156,6 +200,19 @@ defaults write com.apple.commerce AutoUpdate -bool true
 # Disallow the App Store to reboot machine on macOS updates
 defaults write com.apple.commerce AutoUpdateRestartRequired -bool false
 
+###############################################################################
+# Spectacle                                                                   #
+###############################################################################
+
+cp -r spectacle.json ~/Library/Application\ Support/Spectacle/Shortcuts.json 2> /dev/null
+
+###############################################################################
+# Google Chrome                                                               #
+###############################################################################
+
+# Disable the all too sensitive backswipe on trackpads
+# defaults write com.google.Chrome AppleEnableSwipeNavigateWithScrolls -bool false
+# defaults write com.google.Chrome.canary AppleEnableSwipeNavigateWithScrolls -bool false
 
 ###############################################################################
 # Kill affected applications                                                  #
@@ -170,6 +227,8 @@ for app in "Activity Monitor" \
   "Mail" \
   "Messages" \
   "Photos" \
+  "Google Chrome" \
+  "Spectacle" \
   "SystemUIServer" ; do
   killall "${app}" &> /dev/null
 done
@@ -185,5 +244,5 @@ install/sort: \n\
 Restart Terminal.app\n\
 copy git config from your backup/re-login \n\
 copy .npmrc from your backup/re-login \n\
-login to literally everything \n\
+login to everything \n\
 "
