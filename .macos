@@ -29,7 +29,8 @@ echo "brew installing stuff"
 # tree: handy for listing out directories in text
 # bat: A cat(1) clone with syntax highlighting and Git integration.
 brew install git fasd tree bat shellcheck watch the_silver_searcher \
-romkatv/powerlevel10k/powerlevel10k
+romkatv/powerlevel10k/powerlevel10k \
+gh serverless
 
 # install oh-my-zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
@@ -44,6 +45,7 @@ echo "node --version: $(node --version)"
 echo "npm --version: $(npm --version)"
 
 npm install --global yarn
+yarn global add typescript
 
 echo "installing apps with brew"
 brew tap homebrew/cask-versions
@@ -268,8 +270,8 @@ install/sort: \n\
 \n\
 Restart Terminal.app\n\
 Log in to VSCode to use settings sync \n\
-copy git config from your backup or re-login \n\
-copy .npmrc from your backup or re-login \n\
+copy git config from your backup (or recreate it) \n\
+copy .npmrc from your backup (or recreate it) \n\
 login to everything \n\
 Set iTerm settings (https://stackoverflow.com/a/63403514, Appearance > Tabs > Preserve windows size when tab bar shows or hides, Appearance > Dimming > 30, Profiles > Text > Cursor > Vertical bar) \n\
 "
