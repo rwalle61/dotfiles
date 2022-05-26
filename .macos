@@ -53,7 +53,7 @@ brew install --cask google-chrome google-chrome-dev firefox firefox-developer-ed
 google-drive now-tv-player discord steam \
 visual-studio-code iterm2 docker postman \
 slack zoom \
-fig spectacle copyclip \
+fig spectacle \
 qlcolorcode qlstephen qlmarkdown quicklook-json qlimagesize suspicious-package quicklookase qlvideo \
 
 # echo "Generating an RSA token for GitHub"
@@ -267,6 +267,7 @@ install/sort: \n\
   git config (SSH key) \n\
   run fig and zsh (and configure powerlevel10k) \n\
   AWS cli (https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html) \n\
+  Get copyclip from App store \n\
 \n\
 Restart Terminal.app\n\
 Log in to VSCode to use settings sync \n\
