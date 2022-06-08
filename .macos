@@ -267,7 +267,7 @@ install/sort: \n\
   git config (SSH key) \n\
   run fig and zsh (and configure powerlevel10k) \n\
   AWS cli (https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html) \n\
-  Get copyclip from App store \n\
+  Get CopyClip from Mac App store \n\
 \n\
 Restart Terminal.app\n\
 Log in to VSCode to use settings sync \n\
