@@ -264,7 +264,7 @@ echo "Done. Note that some of these changes require a logout/restart to take eff
 
 printf "TODO:\n\
 install/sort: \n\
-  git config (SSH key) \n\
+  git config (SSH key, work folder switch git user https://stackoverflow.com/a/3860139) \n\
   run fig and zsh (and configure powerlevel10k) \n\
   AWS cli (https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html) \n\
   Get CopyClip from Mac App store \n\
