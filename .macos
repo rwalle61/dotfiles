@@ -30,10 +30,19 @@ echo "brew installing stuff"
 # bat: A cat(1) clone with syntax highlighting and Git integration.
 brew install git fasd tree bat shellcheck watch the_silver_searcher \
 romkatv/powerlevel10k/powerlevel10k \
-gh serverless
+gh serverless pyenv corepack
 
 # install oh-my-zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+echo "installing apps with brew"
+brew tap homebrew/cask-versions
+brew install --cask google-chrome google-chrome-dev firefox firefox-developer-edition \
+google-drive discord steam \
+visual-studio-code iterm2 docker postman \
+slack zoom \
+fig flycut spectacle \
+qlcolorcode qlstephen qlmarkdown quicklook-json qlimagesize suspicious-package quicklookase qlvideo \
 
 echo "installing node (via n-install)"
 curl -L https://git.io/n-install | bash
@@ -44,17 +53,12 @@ curl -L https://git.io/n-install | bash
 echo "node --version: $(node --version)"
 echo "npm --version: $(npm --version)"
 
+corepack enable
 npm install --global yarn
-yarn global add typescript
-
-echo "installing apps with brew"
-brew tap homebrew/cask-versions
-brew install --cask google-chrome google-chrome-dev firefox firefox-developer-edition \
-google-drive now-tv-player discord steam \
-visual-studio-code iterm2 docker postman \
-slack zoom \
-fig spectacle \
-qlcolorcode qlstephen qlmarkdown quicklook-json qlimagesize suspicious-package quicklookase qlvideo \
+corepack prepare yarn@stable --activate
+yarn --version
+corepack prepare pnpm@stable --activate
+pnpm --version
 
 # echo "Generating an RSA token for GitHub"
 # mkdir -p ~/.ssh
@@ -267,12 +271,10 @@ install/sort: \n\
   git config (SSH key, work folder switch git user https://stackoverflow.com/a/3860139) \n\
   run fig and zsh (and configure powerlevel10k) \n\
   AWS cli (https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html) \n\
-  Get CopyClip from Mac App store \n\
 \n\
 Restart Terminal.app\n\
 Log in to VSCode to use settings sync \n\
 copy git config from your backup (or recreate it) \n\
 copy .npmrc from your backup (or recreate it) \n\
-login to everything \n\
-Set iTerm settings (https://stackoverflow.com/a/63403514, Appearance > Tabs > Preserve windows size when tab bar shows or hides, Appearance > Dimming > 30, Profiles > Text > Cursor > Vertical bar) \n\
+login to everything \n
 "

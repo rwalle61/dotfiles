@@ -3,7 +3,6 @@
   "editor.suggest.localityBonus": true,
   "terminal.integrated.scrollback": 8000,
   "javascript.updateImportsOnFileMove.enabled": "always",
-  "zenMode.hideTabs": false,
   "editor.minimap.enabled": false,
   "explorer.confirmDelete": false,
   "zenMode.centerLayout": false,
@@ -17,10 +16,7 @@
     "**/.settings": true
   },
   "zenMode.hideLineNumbers": false,
-  "python.linting.pycodestyleArgs": ["--ignore=E501"],
-  "python.formatting.provider": "autopep8",
   "editor.suggestSelection": "first",
-  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
   "files.associations": {
     "*Dockerfile*": "dockerfile"
   },
@@ -30,25 +26,21 @@
   "workbench.panel.defaultLocation": "right",
   "git.ignoreLegacyWarning": true,
   "vsicons.dontShowNewVersionMessage": true,
-  "diffEditor.ignoreTrimWhitespace": false,
   "typescript.format.insertSpaceAfterOpeningAndBeforeClosingTemplateStringBraces": true,
   "typescript.updateImportsOnFileMove.enabled": "always",
   "editor.codeActionsOnSave": {
+    "source.organizeImports": "always"
     // "source.fixAll.eslint": true
   },
   "files.insertFinalNewline": true,
   "shellcheck.disableVersionCheck": true,
   "debug.onTaskErrors": "debugAnyway",
-  "files.autoSave": "onFocusChange",
   "[javascriptreact]": {
     "editor.defaultFormatter": "dbaeumer.vscode-eslint"
   },
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "eslint.format.enable": true,
-  "go.useLanguageServer": true,
-  "java.semanticHighlighting.enabled": true,
   // "terminal.integrated.fontFamily": "Meslo LG M for Powerline",
   "editor.tabSize": 2,
   "code-runner.showRunIconInEditorTitleMenu": false,
@@ -57,7 +49,7 @@
   "prettier.jsxSingleQuote": true,
   "prettier.singleQuote": true,
   "prettier.trailingComma": "all",
-  "editor.renameOnType": true,
+  "editor.linkedEditing": true,
   "todohighlight.keywordsPattern": "\\sTODO:",
   "javascript.preferences.importModuleSpecifierEnding": "minimal",
   "editor.trimAutoWhitespace": false,
@@ -65,16 +57,12 @@
   "typescript.preferences.importModuleSpecifierEnding": "minimal",
   "git.confirmSync": false,
   "workbench.iconTheme": "vscode-icons",
-  "terminal.integrated.shell.osx": "/bin/zsh",
-  "java.project.importOnFirstTimeStartup": "automatic",
-  "python.showStartPage": false,
   "search.exclude": {
     "**/.git": true,
     "**/*.heapsnapshot": true
   },
-  "errorLens.enabledDiagnosticLevels": ["error", "info", "warning"],
+  "errorLens.enabledDiagnosticLevels": ["info", "error"],
   "mocha-snippets.function-type": "arrow",
-  "tabnine.experimentalAutoImports": true,
   "yaml.customTags": [
     "!And",
     "!And sequence",
@@ -111,7 +99,7 @@
   "redhat.telemetry.enabled": false,
   "security.workspace.trust.untrustedFiles": "open",
   "workbench.editorAssociations": {
-    "*.ipynb": "jupyter.notebook.ipynb"
+    "*.ipynb": "jupyter-notebook"
   },
   "js/ts.implicitProjectConfig.strictNullChecks": true,
   "javascript.inlayHints.enumMemberValues.enabled": true,
@@ -119,7 +107,6 @@
   "javascript.inlayHints.functionLikeReturnTypes.enabled": true,
   "typescript.preferences.importModuleSpecifier": "project-relative",
   "json.schemas": [],
-  "workbench.editor.enablePreview": false,
   "errorLens.enabled": true,
   "terminal.integrated.env.osx": {
     "FIG_NEW_SESSION": "1"
@@ -131,5 +118,63 @@
   "editor.bracketPairColorization.enabled": true,
   "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
   "js/ts.implicitProjectConfig.checkJs": true,
-  "window.zoomLevel": 1
+  "workbench.startupEditor": "none",
+  "terminal.integrated.enableMultiLinePasteWarning": "auto",
+  "files.autoSave": "onFocusChange",
+  "githubPullRequests.pullBranch": "never",
+  "eslint.workingDirectories": [],
+  "auto-close-tag.activationOnLanguage": [
+    "xml",
+    "php",
+    "blade",
+    "ejs",
+    "jinja",
+    "javascriptreact",
+    "typescriptreact",
+    "plaintext",
+    "markdown",
+    "vue",
+    "liquid",
+    "erb",
+    "lang-cfml",
+    "cfml",
+    "HTML (EEx)",
+    "HTML (Eex)",
+    "plist"
+  ],
+  "workbench.editor.enablePreview": false,
+  "[python]": {
+    "editor.formatOnType": true,
+    "editor.defaultFormatter": "ms-python.black-formatter"
+  },
+  "[yaml]": {
+    "editor.defaultFormatter": "redhat.vscode-yaml"
+  },
+  "python.analysis.autoFormatStrings": true,
+  "python.analysis.autoImportCompletions": true,
+  "python.analysis.inlayHints.callArgumentNames": "partial",
+  "python.analysis.inlayHints.pytestParameters": true,
+  "python.analysis.inlayHints.functionReturnTypes": true,
+  "python.analysis.typeCheckingMode": "basic",
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "git.closeDiffOnOperation": true,
+  "diffEditor.experimental.showMoves": true,
+  "diffEditor.useInlineViewWhenSpaceIsLimited": false,
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "diffEditor.ignoreTrimWhitespace": false,
+  "window.zoomLevel": 1,
+  "workbench.activityBar.location": "top",
+  "jupyter.askForKernelRestart": false,
+  "editor.formatOnSaveMode": "modificationsIfAvailable",
+  "notebook.formatOnCellExecution": true,
+  "notebook.formatOnSave.enabled": true,
+  "notebook.experimental.variablesView": true,
+  "prisma.showPrismaDataPlatformNotification": false,
+  "testing.openTesting": "openExplorerOnTestStart",
+  "python.testing.pytestEnabled": true,
+  "testing.coverageToolbarEnabled": true
 }
