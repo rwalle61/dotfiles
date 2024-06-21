@@ -1,7 +1,6 @@
-#!/bin/env
-
 # Fig pre block. Keep at the top of this file.
-. "$HOME/.fig/shell/zshrc.pre.zsh"
+[[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.pre.zsh"
+#!/bin/env
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
@@ -118,21 +117,26 @@ alias hist="history | tail -40"
 alias zshconfig="code ~/.zshrc"
 alias gbd="gb -D"
 alias gur="git reset 'HEAD@{1}'" # undo reset
+gtp() { git tag "$1" && git push origin "$1"; }
 # alias cat=bat
 
 
 export BAT_PAGER="less -rR"
+
+# auto create upstream branch when pushing local branch for first time
+git config --global push.default current 
+
 
 # Stop sharing command history between iTerm tabs
 # unsetopt inc_append_history
 # unsetopt share_history
 
 source /opt/homebrew/opt/powerlevel10k/powerlevel10k.zsh-theme
+# source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Fixes instant pasting of text (broken by zsh syntax highlighting) https://github.com/zsh-users/zsh-syntax-highlighting/issues/295#issuecomment-214581607
 zstyle ':bracketed-paste-magic' active-widgets '.self-*'
@@ -140,13 +144,34 @@ zstyle ':bracketed-paste-magic' active-widgets '.self-*'
 # Added by serverless binary installer
 export PATH="$HOME/.serverless/bin:$PATH"
 
+export HOMEBREW_NO_INSTALL_CLEANUP=TRUE
+
 # tabtab source for packages
 # uninstall by removing these lines
 [[ -f ~/.config/tabtab/__tabtab.zsh ]] && . ~/.config/tabtab/__tabtab.zsh || true
 
 eval "$(fasd --init zsh-wcomp-install zsh-hook zsh-ccomp)"
 
-# Fig post block. Keep at the bottom of this file.
-. "$HOME/.fig/shell/zshrc.post.zsh"
-
 export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+export JAVA_HOME="$SDKMAN_CANDIDATES_DIR/java/current"
+
+# Fig post block. Keep at the bottom of this file.
+[[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
+
+# pnpm
+export PNPM_HOME="$HOME/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+
+# pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
