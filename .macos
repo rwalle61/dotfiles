@@ -28,21 +28,20 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 echo "brew installing stuff"
 # tree: handy for listing out directories in text
 # bat: A cat(1) clone with syntax highlighting and Git integration.
-brew install git fasd tree bat shellcheck watch the_silver_searcher \
-romkatv/powerlevel10k/powerlevel10k \
-gh serverless pyenv corepack
+brew install git tree bat shellcheck watch the_silver_searcher \
+powerlevel10k gh serverless pyenv corepack
 
 # install oh-my-zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 echo "installing apps with brew"
-brew tap homebrew/cask-versions
-brew install --cask google-chrome google-chrome-dev firefox firefox-developer-edition \
+# brew tap homebrew/cask-versions
+brew install --cask google-chrome firefox \
 google-drive discord steam \
 visual-studio-code iterm2 docker postman \
 slack zoom \
 fig flycut spectacle \
-qlcolorcode qlstephen qlmarkdown quicklook-json qlimagesize suspicious-package quicklookase qlvideo \
+qlcolorcode qlstephen qlmarkdown quicklook-json qlimagesize suspicious-package quicklookase qlvideo
 
 echo "installing node (via n-install)"
 curl -L https://git.io/n-install | bash
@@ -54,11 +53,12 @@ echo "node --version: $(node --version)"
 echo "npm --version: $(npm --version)"
 
 corepack enable
-npm install --global yarn
-corepack prepare yarn@stable --activate
+# corepack prepare yarn@stable --activate
 yarn --version
-corepack prepare pnpm@stable --activate
+# corepack prepare pnpm@stable --activate
 pnpm --version
+
+# Log in to gh via `gh auth login` (or do SSH?):
 
 # echo "Generating an RSA token for GitHub"
 # mkdir -p ~/.ssh
@@ -69,12 +69,13 @@ pnpm --version
 # echo "run 'pbcopy < ~/.ssh/id_rsa.pub' and paste that into GitHub"
 
 echo "cloning dotfiles"
-git clone git@github.com:rwalle61/dotfiles.git "${HOME}/dotfiles"
-# ln -s "${HOME}/dotfiles/.zshrc" "${HOME}/.zshrc"
-ln -s "${HOME}/dotfiles/.config/bat/config" "${HOME}/.config/bat/config"
-bat cache --build
+gh repo clone rwalle61/dotfiles "${HOME}/dotfiles"
+ln -s "${HOME}/dotfiles/.zshrc" "${HOME}/.zshrc"
+cp -r ${HOME}/dotfiles/spectacle.json ~/Library/Application\ Support/Spectacle/Shortcuts.json 2> /dev/null
+# DO: open spectacle and system preferences "Allow assistive applications to control your computer"
 
 # Download AWS CLI (https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
+sudo softwareupdate --install-rosetta
 curl "https://awscli.amazonaws.com/AWSCLIV2.pkg" -o "AWSCLIV2.pkg"
 sudo installer -pkg AWSCLIV2.pkg -target /
 
@@ -162,19 +163,6 @@ defaults write com.apple.dock autohide -bool true
 defaults write com.apple.dock persistent-apps -array
 
 ###############################################################################
-# Safari & WebKit                                                             #
-###############################################################################
-
-# Set Safari’s home page to `about:blank` for faster loading
-defaults write com.apple.Safari HomePage -string "about:blank"
-
-# Enable “Do Not Track”
-defaults write com.apple.Safari SendDoNotTrackHTTPHeader -bool true
-
-# Update extensions automatically
-defaults write com.apple.Safari InstallExtensionUpdatesAutomatically -bool true
-
-###############################################################################
 # Activity Monitor                                                            #
 ###############################################################################
 
@@ -231,20 +219,6 @@ cp -r .zshrc ~/.zshrc 2> /dev/null
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-
-###############################################################################
-# Spectacle                                                                   #
-###############################################################################
-
-cp -r spectacle.json ~/Library/Application\ Support/Spectacle/Shortcuts.json 2> /dev/null
-
-###############################################################################
-# Google Chrome                                                               #
-###############################################################################
-
-# Disable the all too sensitive backswipe on trackpads
-# defaults write com.google.Chrome AppleEnableSwipeNavigateWithScrolls -bool false
-# defaults write com.google.Chrome.canary AppleEnableSwipeNavigateWithScrolls -bool false
 
 ###############################################################################
 # Kill affected applications                                                  #
