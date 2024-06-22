@@ -35,13 +35,24 @@ powerlevel10k gh serverless pyenv corepack
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 echo "installing apps with brew"
-# brew tap homebrew/cask-versions
 brew install --cask google-chrome firefox \
-google-drive discord steam \
+google-drive discord steam spotify \
 visual-studio-code iterm2 docker postman \
 slack zoom \
 fig flycut spectacle \
-qlcolorcode qlstephen qlmarkdown quicklook-json qlimagesize suspicious-package quicklookase qlvideo
+qlcolorcode qlstephen qlmarkdown qlprettypatch qlimagesize qlvideo suspicious-package quicklook-json quicklook-csv webpquicklook
+
+# (Install QLColorCode for syntax highlighting of source code files
+# Install QLStephen for plain text files without an extension
+# Install QLMarkdown for Markdown files
+# Install QLPrettypatch to preview patch files
+# Install QLImageSize to display image dimensions
+# Install QLVideo to preview most video formats
+# Install Suspicious Package to preview contents of a package
+# Install QuickLookCSV to preview CSV files
+# Install QuickLookJSON to preview JSON files
+# Install WebPQuickLook to preview WebP images)
+
 
 echo "installing node (via n-install)"
 curl -L https://git.io/n-install | bash
@@ -109,6 +120,9 @@ defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
 
 # Disable auto-correct
 defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
+
+# Trackpad: increase tracking speed
+defaults write -g com.apple.trackpad.scaling 3
 
 # Trackpad: enable tap to click for this user and for the login screen
 defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
