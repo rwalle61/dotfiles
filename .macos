@@ -29,7 +29,7 @@ echo "brew installing stuff"
 # tree: handy for listing out directories in text
 # bat: A cat(1) clone with syntax highlighting and Git integration.
 brew install git tree bat shellcheck watch the_silver_searcher \
-powerlevel10k gh serverless pyenv corepack
+powerlevel10k gh serverless pipenv pyenv corepack 
 
 # install oh-my-zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
@@ -52,7 +52,14 @@ qlcolorcode qlstephen qlmarkdown qlprettypatch qlimagesize qlvideo suspicious-pa
 # Install QuickLookCSV to preview CSV files
 # Install QuickLookJSON to preview JSON files
 # Install WebPQuickLook to preview WebP images)
+# (sort permissions by running this: https://github.com/whomwah/qlstephen#permissions-quarantine)
 
+# Setup python:
+# pyenv install --list
+# pyenv install 3.12.4
+# pyenv global 3.12.4 (then open new shell)
+# pipenv install
+# pipenv shell
 
 echo "installing node (via n-install)"
 curl -L https://git.io/n-install | bash
