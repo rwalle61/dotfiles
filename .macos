@@ -31,6 +31,9 @@ echo "brew installing stuff"
 brew install git tree bat shellcheck watch the_silver_searcher \
 powerlevel10k gh serverless pipenv pyenv corepack 
 
+# set default git branch to "main"
+git config --global init.defaultBranch main
+
 # install oh-my-zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
