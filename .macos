@@ -42,8 +42,19 @@ brew install --cask google-chrome firefox \
 google-drive discord steam spotify \
 visual-studio-code iterm2 docker postman \
 slack zoom \
-fig flycut spectacle \
-qlcolorcode qlstephen qlmarkdown qlprettypatch qlimagesize qlvideo suspicious-package quicklook-json quicklook-csv webpquicklook
+fig flycut spectacle
+
+# QuickLook plugins (& sort permissions via https://github.com/whomwah/qlstephen#permissions-quarantine)
+brew install --cask qlcolorcode qlstephen qlmarkdown qlprettypatch qlimagesize qlvideo suspicious-package quicklook-json quicklook-csv webpquicklook
+for FILE in ~/Library/QuickLook/*; do
+    if [ -f "$FILE" ]; then
+        xattr -cr "$FILE"
+        echo "Cleared attributes for $FILE"
+    fi
+done
+
+qlmanage -r
+qlmanage -r cache
 
 # (Install QLColorCode for syntax highlighting of source code files
 # Install QLStephen for plain text files without an extension
@@ -55,7 +66,9 @@ qlcolorcode qlstephen qlmarkdown qlprettypatch qlimagesize qlvideo suspicious-pa
 # Install QuickLookCSV to preview CSV files
 # Install QuickLookJSON to preview JSON files
 # Install WebPQuickLook to preview WebP images)
-# (sort permissions by running this: https://github.com/whomwah/qlstephen#permissions-quarantine)
+
+
+
 
 # Setup python:
 # pyenv install --list
